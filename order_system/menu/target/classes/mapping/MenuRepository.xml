@@ -8,11 +8,11 @@
 		<result property="author" column="author"/>
 		<result property="price" column="price"/>
 		<result property="flavor" column="flavor"/>
-		<!-- 映射type -->
-		<association property="type" javaType="Type">
-			<id property="id" column="tid"/>
-			<result property="name" column="tname"/>
-		</association>
+<!--		&lt;!&ndash; 映射type &ndash;&gt;-->
+<!--		<association property="type" javaType="Type">-->
+<!--			<id property="id" column="tid"/>-->
+<!--			<result property="name" column="tname"/>-->
+<!--		</association>-->
 	</resultMap>
 
     <select id="findAll" resultMap="Menu">

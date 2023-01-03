@@ -3,36 +3,31 @@
 <mapper namespace="com.yiqin.repository.MenuRepository">
 
 	<resultMap id="menuMap" type="Menu">
-		<id property="id" column="mid"/>
-		<result property="name" column="mname"/>
-		<result property="author" column="author"/>
-		<result property="price" column="price"/>
-		<result property="flavor" column="flavor"/>
-<!--		&lt;!&ndash; 映射type &ndash;&gt;-->
-<!--		<association property="type" javaType="Type">-->
-<!--			<id property="id" column="tid"/>-->
-<!--			<result property="name" column="tname"/>-->
-<!--		</association>-->
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<result column="price" property="price"></result>
+		<result column="flavor" property="flavor"></result>
+		<association property="type" select="com.yiqin.repository.TypeRepository.findById" column="tid"></association>
 	</resultMap>
 
-    <select id="findAll" resultMap="Menu">
-		select * from t_menu limit #{param1},#{param2}
+    <select id="findAll" resultMap="menuMap">
+		select * from t_menu  limit #{param1},#{param2}
 	</select>
 
 	<select id="count" resultType="int">
-		select count(id) from t_menu;
+		select count(id) from t_menu
 	</select>
 
 	<insert id="save" parameterType="Menu">
-		insert into t_menu(name,price,flavor) values(#{name},#{price},#{flavor})
+		insert into t_menu(name,price,flavor, tid) values(#{name},#{price},#{flavor}, #{type.id})
 	</insert>
 
-	<select id="findById" parameterType="long" resultType="Menu">
+	<select id="findById" parameterType="long" resultMap="menuMap">
 		select * from t_menu where id = #{id}
 	</select>
 
 	<update id="update" parameterType="Menu">
-		update t_menu set name = #{name},price = #{price},flavor = #{flavor} where id = #{id}
+		update t_menu set name = #{name}, price = #{price}, flavor = #{flavor}, tid = #{type.id} where id = #{id}
 	</update>
 
 	<delete id="deleteById" parameterType="long">

@@ -1,11 +1,11 @@
 package com.yiqin.repository;
 
 import com.yiqin.entity.Menu;
-import org.springframework.stereotype.Repository;
+//import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public interface MenuRepository{
     public List<Menu> findAll(int index, int limit);
     public int count();

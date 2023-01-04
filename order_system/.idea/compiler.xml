@@ -7,17 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config_server" />
         <module name="eureka_server" />
         <module name="client" />
         <module name="menu" />
         <module name="user" />
-        <module name="config_server" />
+        <module name="account" />
         <module name="order" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="account" options="-parameters" />
       <module name="client" options="-parameters" />
       <module name="config_server" options="-parameters" />
       <module name="eureka_server" options="-parameters" />

@@ -1,13 +1,9 @@
 package com.yiqin.feign;
 
-import com.yiqin.entity.MenuVO;
 import com.yiqin.entity.Order;
 import com.yiqin.entity.OrderVO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(value = "order")
 public interface OrderFeign {
@@ -16,4 +12,10 @@ public interface OrderFeign {
 
     @GetMapping("/order/findAllByUid/{index}/{limit}/{uid}")
     public OrderVO findAllByUid(@PathVariable("index") int index, @PathVariable("limit") int limit, @PathVariable("uid") long uid);
+
+    @GetMapping("/order/findAll/{index}/{limit}")
+    public OrderVO findAll(@PathVariable("index") int index, @PathVariable int limit);
+
+    @GetMapping("/order/updateState/{id}")
+    public void updateState(@PathVariable("id") long id);
 }

@@ -6,7 +6,6 @@
 		<result column="date" property="date"></result>
 		<result column="state" property="state"></result>
 		<association property="menu" select="com.yiqin.repository.MenuRepository.findById" column="mid"></association>
-		<association property="user" select="com.yiqin.repository.UserRepository.findById" column="uid"></association>
 	</resultMap>
 
 	<insert id="save" parameterType="Order">
@@ -22,7 +21,7 @@
 	</select>
 
 	<select id="findAll" resultMap="orderMap">
-		select id, mid, uid, date, state from t_order where state = 0 limit #{param1},#{param2}
+		select id, mid, date, state from t_order where state = 0 limit #{param1},#{param2}
 	</select>
 
 	<update id="updateState" parameterType="long">
